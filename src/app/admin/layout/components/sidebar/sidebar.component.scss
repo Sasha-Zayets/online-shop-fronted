@@ -5,8 +5,16 @@
   mat-icon {
     margin-right: 10px;
   }
+}
 
+mat-list-item {
   &.selected {
-    background-color: white;
+    background-color: #707070;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: #707070;
+    }
   }
 }

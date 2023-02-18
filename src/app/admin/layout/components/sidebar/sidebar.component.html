@@ -3,11 +3,12 @@
         *ngFor="let itemMenu of listMenu"
         appAccordionLink
         routerLinkActive="selected"
+        [routerLink]="['/', 'admin', itemMenu.link]"
     >
-        <a class="sidebar-link-item" [routerLink]="['/', 'admin', itemMenu.link]">
+        <span class="sidebar-link-item">
             <mat-icon>{{ itemMenu.icon }}</mat-icon> 
             <span>{{ itemMenu.name }}</span> 
             <span fxFlex></span> 
-        </a>
+        </span>
     </mat-list-item>
 </mat-nav-list>
