@@ -5,6 +5,7 @@ import { AdminComponent } from './admin.component';
 const routes: Routes = [
   {
     path: '',
+    pathMatch: 'full',
     component: AdminComponent,
   },
   {
@@ -14,7 +15,19 @@ const routes: Routes = [
   {
     path: 'products',
     component: AdminComponent,
-  }
+  },
+  {
+    path: 'categories',
+    component: AdminComponent,
+  },
+  {
+    path: 'orders',
+    component: AdminComponent,
+  },
+  {
+    path: 'users',
+    component: AdminComponent,
+  },
 ];
 
 @NgModule({
