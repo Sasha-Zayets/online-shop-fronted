@@ -1,3 +1,13 @@
-<app-admin-header></app-admin-header>
-<ng-content></ng-content>
-<footer>footer</footer>
+<app-admin-header (toggleSidebar)="toggleSidebar()"></app-admin-header>
+
+<mat-drawer-container class="sidebar-container">
+  <mat-drawer #drawer class="sidebar-navigation" [opened]="openedSidebar" mode="side">
+    <app-admin-sidebar></app-admin-sidebar>
+  </mat-drawer>
+
+  <div class="container-content">
+    <ng-content></ng-content>
+  </div>
+</mat-drawer-container>
+
+<app-admin-footer>footer</app-admin-footer>

@@ -1,0 +1,12 @@
+.sidebar-link-item {
+  display: flex;
+  align-items: center;
+
+  mat-icon {
+    margin-right: 10px;
+  }
+
+  &.selected {
+    background-color: white;
+  }
+}

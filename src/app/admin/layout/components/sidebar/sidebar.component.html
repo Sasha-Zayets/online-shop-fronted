@@ -1,0 +1,13 @@
+<mat-nav-list appAccordion>
+    <mat-list-item
+        *ngFor="let itemMenu of listMenu"
+        appAccordionLink
+        routerLinkActive="selected"
+    >
+        <a class="sidebar-link-item" [routerLink]="['/', itemMenu.link]">
+            <mat-icon>{{ itemMenu.icon }}</mat-icon> 
+            <span>{{ itemMenu.name }}</span> 
+            <span fxFlex></span> 
+        </a>
+    </mat-list-item>
+</mat-nav-list>

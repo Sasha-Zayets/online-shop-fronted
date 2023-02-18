@@ -6,6 +6,14 @@ const routes: Routes = [
   {
     path: '',
     component: AdminComponent,
+  },
+  {
+    path: 'home',
+    component: AdminComponent,
+  },
+  {
+    path: 'products',
+    component: AdminComponent,
   }
 ];
 
