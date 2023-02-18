@@ -10,9 +10,15 @@ import { AdminMaterialUiModule } from './material-ui.module';
 import { Sidebar } from './layout/components/sidebar/sidebar.component';
 
 @NgModule({
-  declarations: [AdminComponent, LayoutComponent, AppHeaderComponent, AppAdminFooter, Sidebar],
+  declarations: [
+    AdminComponent,
+    LayoutComponent,
+    AppHeaderComponent,
+    AppAdminFooter,
+    Sidebar,
+  ],
   imports: [
-    CommonModule,
+  CommonModule,
     AdminRoutingModule,
     AdminMaterialUiModule,
   ]
