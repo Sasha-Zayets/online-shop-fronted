@@ -1,13 +1,17 @@
-<form [formGroup]="categoryForm" (ngSubmit)="onSubmitCategoryForm(categoryForm.value)" class="form-category">
-  <mat-form-field appearance="outline" class="form-field">
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name" name="name">
-    <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">Name is required</mat-error>
-  </mat-form-field>
-  <button 
-    mat-raised-button
-    color="primary"
-    type="submit"
-    [disabled]="!categoryForm.valid"  
-  >Create category</button>
-</form>
+<div class="categories-wrapper">
+  <h3>Create new category:</h3>
+  <form [formGroup]="categoryForm" (ngSubmit)="onSubmitCategoryForm(categoryForm.value)" class="form-category">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" name="name">
+      <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">Name is required</mat-error>
+      <mat-error *ngIf="categoryForm.get('name')?.hasError('maxlength')">Name cannot be more than 155 characters</mat-error>
+    </mat-form-field>
+    <button 
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="!categoryForm.valid"  
+    >Create category</button>
+  </form>
+</div>

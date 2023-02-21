@@ -9,7 +9,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class CreateCategoriesComponent implements OnInit {
 
   categoryForm = new FormGroup({
-    name: new FormControl('', Validators.compose([Validators.required])),
+    name: new FormControl('', Validators.compose([
+      Validators.required,
+      Validators.maxLength(150),
+    ])),
   });
 
   constructor() { }
@@ -17,7 +20,7 @@ export class CreateCategoriesComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmitCategoryForm(values: any) {
+  onSubmitCategoryForm(values: { name: string }) {
     console.log("Form submit", values);
   }
 
