@@ -1,0 +1,10 @@
+<div>
+  <h3>Edit your category:</h3>
+  <app-category-form [initialValues]="currentCategory" (onSendForm)="updateCategory($event)"></app-category-form>
+  <hr />
+  <button
+    mat-raised-button
+    [routerLink]="['/', 'admin', 'categories']"
+    color="accent"
+  >Back to list categories</button>
+</div>

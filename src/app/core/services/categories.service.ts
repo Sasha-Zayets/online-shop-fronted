@@ -14,12 +14,16 @@ export class CategoriesService {
     return this.apiService.get<Category[]>(`/categories`);
   }
 
+  getFullCategory(id: string): Observable<Category> {
+    return this.apiService.get<Category>(`/categories/${id}`);
+  }
+
   createCategory(name: string): Observable<Category> {
     return this.apiService.post<Category>(`/categories`, { name });
   }
 
   updateCategory(id: string, updatedName: string): Observable<Category> {
-    return this.apiService.put<Category>(`/categories${id}`, { name: updatedName });
+    return this.apiService.put<Category>(`/categories/${id}`, { name: updatedName });
   }
 
   deleteCategory(id: number): Observable<DeleteRespose> {

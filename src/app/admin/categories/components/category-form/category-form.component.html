@@ -10,5 +10,10 @@
     color="primary"
     type="submit"
     [disabled]="!categoryForm.valid"  
-  >Create category</button>
+  >
+    <span *ngIf="isEditForm; else createCategory">Edit category</span>
+    <ng-template #createCategory>
+      <span>Create category</span>
+    </ng-template>
+  </button>
 </form>

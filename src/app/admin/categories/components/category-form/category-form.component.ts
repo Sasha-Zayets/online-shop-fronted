@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Category } from 'src/app/core/models/category';
 import { CreateCategory } from '../../categories.types';
 
 @Component({
@@ -7,9 +8,11 @@ import { CreateCategory } from '../../categories.types';
   templateUrl: './category-form.component.html',
   styleUrls: ['./category-form.component.sass']
 })
-export class CategoryFormComponent implements OnInit {
+export class CategoryFormComponent implements OnInit, OnChanges {
+  @Input() initialValues: Category | null = null;
   @Output() onSendForm: EventEmitter<CreateCategory> = new EventEmitter();
 
+  isEditForm = false;
   categoryForm = new FormGroup({
     name: new FormControl('', Validators.compose([
       Validators.required,
@@ -20,6 +23,18 @@ export class CategoryFormComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (this.initialValues) {
+      this.categoryForm.patchValue({ name: this.initialValues.name });
+      this.isEditForm = true;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.initialValues) {
+      const name = changes.initialValues?.currentValue?.name || '';
+      this.categoryForm.patchValue({ name });
+      this.isEditForm = true;
+    }
   }
 
   onSubmitCategoryForm(values: CreateCategory): void {

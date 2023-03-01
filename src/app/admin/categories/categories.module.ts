@@ -7,12 +7,14 @@ import { CategoriesRoutingModule } from './categories-routing.module';
 import { AdminMaterialUiModule } from '../material-ui.module';
 import { CreateCategoriesComponent } from './pages/create-categories/create-categories.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { EditCategoryComponent } from './pages/edit-category/edit-category.component';
 
 @NgModule({
   declarations: [
     CategoriesComponent,
     CreateCategoriesComponent,
     CategoryFormComponent,
+    EditCategoryComponent,
   ],
   imports: [
     CommonModule,
