@@ -18,7 +18,7 @@ import { Sidebar } from './layout/components/sidebar/sidebar.component';
     Sidebar,
   ],
   imports: [
-  CommonModule,
+    CommonModule,
     AdminRoutingModule,
     AdminMaterialUiModule,
   ]

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+import { CategoriesService } from 'src/app/core/services/categories.service';
+import { CreateCategory } from '../../categories.types';
 
 @Component({
   selector: 'app-create-categories',
@@ -8,20 +11,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateCategoriesComponent implements OnInit {
 
-  categoryForm = new FormGroup({
-    name: new FormControl('', Validators.compose([
-      Validators.required,
-      Validators.maxLength(150),
-    ])),
-  });
-
-  constructor() { }
+  constructor(private categoriesService: CategoriesService, private router: Router, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
 
-  onSubmitCategoryForm(values: { name: string }) {
-    console.log("Form submit", values);
+  createNewCategory(category: CreateCategory): void {
+    this.categoriesService.createCategory(category.name).subscribe(() => {
+      this.router.navigate(['/', 'admin', 'categories']);
+      this.snackBar.open('Category created successfully', '', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top',
+      });
+    });
   }
-
 }
