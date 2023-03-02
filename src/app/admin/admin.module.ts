@@ -8,6 +8,7 @@ import { AppHeaderComponent } from './layout/components/header/header.component'
 import { AppAdminFooter } from './layout/components/footer/footer.component';
 import { AdminMaterialUiModule } from './material-ui.module';
 import { Sidebar } from './layout/components/sidebar/sidebar.component';
+import { AdminLoginComponent } from './layout/components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { Sidebar } from './layout/components/sidebar/sidebar.component';
     AppHeaderComponent,
     AppAdminFooter,
     Sidebar,
+    AdminLoginComponent,
   ],
   imports: [
     CommonModule,
