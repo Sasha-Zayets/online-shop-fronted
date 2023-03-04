@@ -13,6 +13,10 @@ export class LayoutComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
+    this.checkAndSetAuthStatus();
+  }
+
+  checkAndSetAuthStatus(): void {
     this.isAuthenticated = this.authService.isAuthenticated();
   }
 
@@ -21,6 +25,10 @@ export class LayoutComponent implements OnInit {
   }
 
   onLogin(): void {
-    this.isAuthenticated = this.authService.isAuthenticated();
+    this.checkAndSetAuthStatus();
+  }
+
+  logOut(): void {
+    this.checkAndSetAuthStatus();
   }
 }

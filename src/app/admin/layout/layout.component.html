@@ -1,4 +1,4 @@
-<app-admin-header (toggleSidebar)="toggleSidebar()"></app-admin-header>
+<app-admin-header [isAuth]="isAuthenticated" (toggleSidebar)="toggleSidebar()" (logOut)="logOut()"></app-admin-header>
 
 <mat-drawer-container *ngIf="!isAuthenticated; else mainLayoutContent" class="sidebar-container">
   <app-admin-login (onLogin)="onLogin()"></app-admin-login>

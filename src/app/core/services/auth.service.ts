@@ -29,4 +29,8 @@ export class AuthService {
       })
     );
   }
+
+  logOut(): void {
+    this.cookieService.deleteCookie('access_token', '/');
+  }
 }
