@@ -13,34 +13,18 @@ export class ApiService {
   constructor(private http: HttpClient) { }
 
   public get<T>(url: string, params?: any): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}${url}`, { params })
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.get<T>(`${this.baseUrl}${url}`, { params });
   }
 
   public post<T>(url: string, body: any, headers?: HttpHeaders): Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}${url}`, body, { headers })
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.post<T>(`${this.baseUrl}${url}`, body, { headers });
   }
 
   public put<T>(url: string, body: any, headers?: HttpHeaders): Observable<T> {
-    return this.http.put<T>(`${this.baseUrl}${url}`, body, { headers })
-      .pipe(
-        catchError(this.handleError)
-      );
+    return this.http.put<T>(`${this.baseUrl}${url}`, body, { headers });
   }
 
   public delete<T>(url: string, headers?: HttpHeaders): Observable<T> {
-    return this.http.delete<T>(`${this.baseUrl}${url}`, { headers })
-      .pipe(
-        catchError(this.handleError)
-      );
-  }
-
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    return throwError('Сталася помилка. Будь ласка, спробуйте пізніше.');
+    return this.http.delete<T>(`${this.baseUrl}${url}`, { headers });
   }
 }
