@@ -19,4 +19,8 @@ export class LayoutComponent implements OnInit {
   toggleSidebar(): void {
     this.openedSidebar = !this.openedSidebar;
   }
+
+  onLogin(): void {
+    this.isAuthenticated = this.authService.isAuthenticated();
+  }
 }

@@ -9,6 +9,7 @@ import { AppAdminFooter } from './layout/components/footer/footer.component';
 import { AdminMaterialUiModule } from './material-ui.module';
 import { Sidebar } from './layout/components/sidebar/sidebar.component';
 import { AdminLoginComponent } from './layout/components/login/login.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { AdminLoginComponent } from './layout/components/login/login.component';
     CommonModule,
     AdminRoutingModule,
     AdminMaterialUiModule,
+    ReactiveFormsModule,
   ]
 })
 export class AdminModule { }
