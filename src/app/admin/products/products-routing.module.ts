@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { ProductsComponent } from './pages/products/products.component';
 import { RouterModule, Routes } from '@angular/router';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: ProductsComponent },
-  { path: 'create', pathMatch: 'full', component: CreateProductComponent },
+  { path: 'create', component: CreateProductComponent },
+  { path: ':productId', component: EditProductComponent },
 ];
 
 @NgModule({

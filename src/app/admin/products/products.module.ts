@@ -4,12 +4,14 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import {AdminMaterialUiModule} from '../material-ui.module';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
+import { EditProductComponent } from './pages/edit-product/edit-product.component';
 
 
 @NgModule({
   declarations: [
     ProductsComponent,
-    CreateProductComponent
+    CreateProductComponent,
+    EditProductComponent
   ],
   imports: [
     CommonModule,
