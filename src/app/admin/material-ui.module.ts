@@ -12,6 +12,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatCardModule } from '@angular/material/card';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   imports: [
@@ -28,6 +30,8 @@ import { MatCardModule } from '@angular/material/card';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
   ],
   exports: [
     MatIconModule,
@@ -42,6 +46,8 @@ import { MatCardModule } from '@angular/material/card';
     MatProgressSpinnerModule,
     MatSnackBarModule,
     MatCardModule,
+    MatTableModule,
+    MatPaginatorModule,
   ]
 })
 export class AdminMaterialUiModule { }

@@ -1,4 +1,5 @@
 export type ID = number;
+export type CATEGORY_ID = ID;
 
 export type ACCSESS_TOKEN = string;
 
