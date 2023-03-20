@@ -8,6 +8,7 @@ import { AuthInterceptor } from './interceptops/auth.interceptor';
 import { AdminAuthGuardService } from './services/admin-auth-guard.service';
 import { AuthService } from './services/auth.service';
 import { HttpErrorInterceptor } from './interceptops/http-error.interceptor';
+import { ProductsService } from './services/products.service';
 
 @NgModule({
   imports: [
@@ -17,6 +18,7 @@ import { HttpErrorInterceptor } from './interceptops/http-error.interceptor';
   providers: [
     ApiService,
     CategoriesService,
+    ProductsService,
     CookieService,
     AuthService,
     AdminAuthGuardService,
