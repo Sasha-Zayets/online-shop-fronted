@@ -6,6 +6,8 @@ import {AdminMaterialUiModule} from '../material-ui.module';
 import { CreateProductComponent } from './pages/create-product/create-product.component';
 import { EditProductComponent } from './pages/edit-product/edit-product.component';
 import { ConfirmRemoveDialogComponent } from './components/confirm-remove-dialog/confirm-remove-dialog.component';
+import { ProductFormComponent } from './components/product-form/product-form.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -14,11 +16,13 @@ import { ConfirmRemoveDialogComponent } from './components/confirm-remove-dialog
     CreateProductComponent,
     EditProductComponent,
     ConfirmRemoveDialogComponent,
+    ProductFormComponent,
   ],
   imports: [
     CommonModule,
     AdminMaterialUiModule,
     ProductsRoutingModule,
+    ReactiveFormsModule,
   ]
 })
 export class ProductsModule { }
