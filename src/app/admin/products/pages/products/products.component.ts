@@ -3,6 +3,10 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource} from '@angular/material/table';
 import {Product} from '../../../../core/models/product';
 import { ProductsService } from '../../../../core/services/products.service';
+import {MatDialog} from '@angular/material/dialog';
+import {ConfirmRemoveDialogComponent} from '../../components/confirm-remove-dialog/confirm-remove-dialog.component';
+import {Observable} from 'rxjs';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-products',
@@ -15,18 +19,43 @@ export class ProductsComponent implements AfterViewInit, OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator | null = null;
 
-  constructor(private readonly productsService: ProductsService) {
+  constructor(private readonly productsService: ProductsService, private dialog: MatDialog, private snackBar: MatSnackBar) {
     this.dataSource = new MatTableDataSource<Product>([]);
   }
 
   ngOnInit(): void {
+    this.getProductsAndInitValues();
+  }
+
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
+  }
+
+  getProductsAndInitValues(): void {
     this.productsService.getAllProducts().subscribe((products) => {
       this.dataSource = new MatTableDataSource<Product>(products);
     });
   }
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
+  openConfirmDialog(): Observable<boolean> {
+    const dialogRef = this.dialog.open(ConfirmRemoveDialogComponent);
+
+    return dialogRef.beforeClosed();
+  }
+
+  removeProduct(idProduct: number): void {
+    this.openConfirmDialog().subscribe((result) => {
+      if (result) {
+        this.productsService.deleteProduct(idProduct).subscribe(() => {
+          this.getProductsAndInitValues();
+          this.snackBar.open('Product deleted successfully', '', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top',
+          });
+        });
+      }
+    });
   }
 
   applyFilter(event: Event): void {
