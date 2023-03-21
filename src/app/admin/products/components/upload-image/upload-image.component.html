@@ -1,0 +1,27 @@
+<div class="upload-image">
+  <div class="upload-image-wrapper">
+    <div *ngIf="file && fileUrl" class="upload-image-frame">
+      <img [src]="fileUrl" alt="uploaded image">
+    </div>
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      *ngIf="!fileUrl; else removeFileButton"
+      (click)="fileRef.click()"
+    >
+      Browse files
+    </button>
+    <ng-template #removeFileButton>
+      <button
+        mat-flat-button
+        color="primary"
+        type="button"
+        (click)="removeFile()"
+      >
+        Remove file
+      </button>
+    </ng-template>
+    <input type="file" name="file" id="uploadImage" accept="image/*" hidden #fileRef>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import { EditProductComponent } from './pages/edit-product/edit-product.componen
 import { ConfirmRemoveDialogComponent } from './components/confirm-remove-dialog/confirm-remove-dialog.component';
 import { ProductFormComponent } from './components/product-form/product-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UploadImageComponent } from './components/upload-image/upload-image.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     EditProductComponent,
     ConfirmRemoveDialogComponent,
     ProductFormComponent,
+    UploadImageComponent,
   ],
   imports: [
     CommonModule,
