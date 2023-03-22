@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -6,7 +6,8 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.sass']
 })
-export class ProductFormComponent implements OnInit {
+export class ProductFormComponent {
+  @Output() onSubmitForm: EventEmitter<FormData> = new EventEmitter<FormData>();
 
   isEditForm = false;
   productForm = new FormGroup(({
@@ -22,14 +23,21 @@ export class ProductFormComponent implements OnInit {
       Validators.required,
     ])),
     available: new FormControl(false),
+    image: new FormControl(null),
   }));
 
-  constructor() { }
-
-  ngOnInit(): void {
+  loadImage(file: File | null): void {
+    this.productForm.patchValue({
+      image: file,
+    });
   }
 
   onSubmitProductForm(values: any): void {
-    console.log(values);
+    const formData = new FormData();
+    Object.keys(values).forEach(key => {
+      formData.append(key, values[key]);
+    });
+
+    this.onSubmitForm.emit(formData);
   }
 }

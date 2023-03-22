@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-upload-image',
@@ -6,6 +6,8 @@ import { Component, HostListener, OnInit } from '@angular/core';
   styleUrls: ['./upload-image.component.sass']
 })
 export class UploadImageComponent implements OnInit {
+  @Output() onLoadFile: EventEmitter<File | null> = new EventEmitter();
+
   file: File | null = null;
   fileUrl: string | ArrayBuffer | null = null;
   constructor() { }
@@ -22,11 +24,13 @@ export class UploadImageComponent implements OnInit {
     reader.readAsDataURL(this.file);
     reader.addEventListener('load', () => {
       this.fileUrl = reader.result;
+      this.onLoadFile.emit(this.file);
     });
   }
 
   removeFile(): void {
     this.file = null;
     this.fileUrl = null;
+    this.onLoadFile.emit(null);
   }
 }

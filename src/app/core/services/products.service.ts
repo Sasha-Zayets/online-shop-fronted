@@ -14,6 +14,10 @@ export class ProductsService {
     return this.apiService.get<Product[]>('/products');
   }
 
+  createProduct(product: FormData): Observable<Product> {
+    return this.apiService.post(`/products`, product);
+  }
+
   deleteProduct(idProduct: number): Observable<DeleteRespose> {
     return this.apiService.delete<DeleteRespose>(`/products/${idProduct}`);
   }
