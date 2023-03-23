@@ -1,11 +1,12 @@
-import {Component, EventEmitter, HostListener, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'app-upload-image',
   templateUrl: './upload-image.component.html',
   styleUrls: ['./upload-image.component.sass']
 })
-export class UploadImageComponent implements OnInit {
+export class UploadImageComponent implements OnInit, OnChanges {
+  @Input() initialFileUrl: string | null | undefined = null;
   @Output() onLoadFile: EventEmitter<File | null> = new EventEmitter();
 
   file: File | null = null;
@@ -13,6 +14,15 @@ export class UploadImageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    if (this.initialFileUrl) {
+      this.fileUrl = this.initialFileUrl;
+    }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.initialFileUrl.currentValue) {
+      this.fileUrl = changes.initialFileUrl.currentValue;
+    }
   }
 
   @HostListener('change', ['$event.target.files'])

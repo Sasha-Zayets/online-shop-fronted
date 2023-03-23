@@ -21,4 +21,8 @@ export class ProductsService {
   deleteProduct(idProduct: number): Observable<DeleteRespose> {
     return this.apiService.delete<DeleteRespose>(`/products/${idProduct}`);
   }
+
+  getFullProductById(idProduct: string): Observable<Product> {
+    return this.apiService.get(`/products/${idProduct}`);
+  }
 }
