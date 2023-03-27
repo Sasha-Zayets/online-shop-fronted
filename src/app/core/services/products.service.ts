@@ -11,15 +11,19 @@ export class ProductsService {
   constructor(private readonly apiService: ApiService) { }
 
   getAllProducts(): Observable<Product[]> {
-    return this.apiService.get<Product[]>('/products');
+    return this.apiService.get('/products');
   }
 
   createProduct(product: FormData): Observable<Product> {
     return this.apiService.post(`/products`, product);
   }
 
+  updateProduct(idProduct: string, product: FormData): Observable<Product> {
+    return this.apiService.put(`/products/${idProduct}`, product);
+  }
+
   deleteProduct(idProduct: number): Observable<DeleteRespose> {
-    return this.apiService.delete<DeleteRespose>(`/products/${idProduct}`);
+    return this.apiService.delete(`/products/${idProduct}`);
   }
 
   getFullProductById(idProduct: string): Observable<Product> {
