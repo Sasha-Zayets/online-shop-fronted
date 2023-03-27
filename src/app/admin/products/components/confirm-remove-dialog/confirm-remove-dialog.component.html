@@ -1,7 +1,16 @@
-<h2 mat-dialog-title>Remove product</h2>
-<mat-dialog-content class="mat-typography">
-  <p>Are you sure that want to remove this product?</p>
+<h2 mat-dialog-title *ngIf="data.title; else title">{{ data.title }}</h2>
+<ng-template #title>
+  <h2 mat-dialog-title>Remove product</h2>
+</ng-template>
+
+<mat-dialog-content *ngIf="data.description; else description" class="mat-typography">
+  <p>{{ data.description }}</p>
 </mat-dialog-content>
+<ng-template #description>
+  <mat-dialog-content class="mat-typography">
+    <p>Are you sure that want to remove this product?</p>
+  </mat-dialog-content>
+</ng-template>
 <mat-dialog-actions align="end">
   <button mat-button (click)="onDismiss()">Cancel</button>
   <button mat-flat-button color="primary" [mat-dialog-close]="true" (click)="onConfirm()">Confirm</button>

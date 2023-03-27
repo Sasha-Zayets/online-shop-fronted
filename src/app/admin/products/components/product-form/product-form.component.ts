@@ -10,6 +10,8 @@ import {Product} from '../../../../core/models/product';
 export class ProductFormComponent implements OnInit, OnChanges {
   @Input() initialValues: Product | null = null;
   @Output() onSubmitForm: EventEmitter<FormData> = new EventEmitter<FormData>();
+  @Output() onRemoveFile: EventEmitter<boolean> = new EventEmitter<boolean>();
+  @Output() onUpdateFile: EventEmitter<File> = new EventEmitter<File>();
 
   isEditForm = false;
   productForm = new FormGroup(({
@@ -46,6 +48,12 @@ export class ProductFormComponent implements OnInit, OnChanges {
   }
 
   loadImage(file: File | null): void {
+    if (!file && this.isEditForm) {
+      this.onRemoveFile.emit(true);
+    } else if (file && this.isEditForm) {
+      this.onUpdateFile.emit(file);
+    }
+
     this.productForm.patchValue({
       image: file,
     });

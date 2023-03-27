@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
-import {ProductsService} from '../../../../core/services/products.service';
-import {Product} from '../../../../core/models/product';
+import { ActivatedRoute } from '@angular/router';
+import { ProductsService } from '../../../../core/services/products.service';
+import { Product } from '../../../../core/models/product';
 
 @Component({
   selector: 'app-edit-product',
@@ -10,11 +10,17 @@ import {Product} from '../../../../core/models/product';
 })
 export class EditProductComponent implements OnInit {
   product: Product | null = null;
-  constructor(private readonly routerService: ActivatedRoute, private readonly productService: ProductsService) { }
+  idProduct = '';
+  constructor(
+    private readonly routerService: ActivatedRoute,
+    private readonly productService: ProductsService,
+  ) { }
 
   ngOnInit(): void {
     this.routerService.params.subscribe((params) => {
       const { productId = '' } = params;
+
+      this.idProduct = productId;
       this.getProductData(productId);
     });
   }
@@ -25,4 +31,17 @@ export class EditProductComponent implements OnInit {
     });
   }
 
+  updateImageForProduct(file: File): void {
+    const formData = new FormData();
+    formData.set('image', file);
+    this.productService.updateImageForProduct(this.idProduct, formData).subscribe(() => {
+      this.getProductData(this.idProduct);
+    });
+  }
+
+  deleteImageForProduct(): void {
+    this.productService.deleteImageForProduct(this.idProduct).subscribe(() => {
+      this.getProductData(this.idProduct);
+    });
+  }
 }

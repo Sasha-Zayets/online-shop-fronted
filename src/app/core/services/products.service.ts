@@ -25,4 +25,12 @@ export class ProductsService {
   getFullProductById(idProduct: string): Observable<Product> {
     return this.apiService.get(`/products/${idProduct}`);
   }
+
+  updateImageForProduct(idProduct: string, product: FormData): Observable<Product> {
+    return this.apiService.put(`/products/images/${idProduct}`, product);
+  }
+
+  deleteImageForProduct(idProduct: string): Observable<Product> {
+    return this.apiService.delete(`/products/images/${idProduct}`);
+  }
 }

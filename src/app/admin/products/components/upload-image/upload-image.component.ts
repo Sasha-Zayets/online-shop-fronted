@@ -1,4 +1,7 @@
 import {Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
+import {Observable} from 'rxjs';
+import {ConfirmRemoveDialogComponent} from '../confirm-remove-dialog/confirm-remove-dialog.component';
 
 @Component({
   selector: 'app-upload-image',
@@ -11,7 +14,7 @@ export class UploadImageComponent implements OnInit, OnChanges {
 
   file: File | null = null;
   fileUrl: string | ArrayBuffer | null = null;
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
     if (this.initialFileUrl) {
@@ -23,6 +26,17 @@ export class UploadImageComponent implements OnInit, OnChanges {
     if (changes.initialFileUrl.currentValue) {
       this.fileUrl = changes.initialFileUrl.currentValue;
     }
+  }
+
+  openConfirmDialog(): Observable<boolean> {
+    const dialogRef = this.dialog.open(ConfirmRemoveDialogComponent, {
+      data: {
+        title: 'Remove image',
+        description: 'Are you sure that want to remove this image?'
+      }
+    });
+
+    return dialogRef.beforeClosed();
   }
 
   @HostListener('change', ['$event.target.files'])
@@ -39,8 +53,12 @@ export class UploadImageComponent implements OnInit, OnChanges {
   }
 
   removeFile(): void {
-    this.file = null;
-    this.fileUrl = null;
-    this.onLoadFile.emit(null);
+    this.openConfirmDialog().subscribe(result => {
+      if (result) {
+        this.file = null;
+        this.fileUrl = null;
+        this.onLoadFile.emit(null);
+      }
+    });
   }
 }
