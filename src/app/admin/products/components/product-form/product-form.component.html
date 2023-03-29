@@ -16,6 +16,17 @@
     <input matInput type="number" formControlName="price" name="price" placeholder="0">
     <mat-error *ngIf="productForm.get('price')?.hasError('required')">Price is required</mat-error>
   </mat-form-field>
+  <mat-form-field appearance="outline" class="form-field form-field--available">
+    <mat-label>Choose categories</mat-label>
+    <mat-select formControlName="categories" name="categories" multiple>
+      <mat-option
+        *ngFor="let category of categories"
+        [value]="category.id">
+        {{ category.name }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="productForm.get('categories')?.hasError('required')">You must select minimum one category</mat-error>
+  </mat-form-field>
   <div class="form-field form-field--available">
     <mat-slide-toggle color="primary" formControlName="available" name="available">
       Product is available

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {ProductsService} from '../../../../core/services/products.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Category} from '../../../../core/models/category';
+import {CategoriesService} from '../../../../core/services/categories.service';
 
 @Component({
   selector: 'app-create-product',
@@ -9,10 +11,18 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./create-product.component.sass']
 })
 export class CreateProductComponent implements OnInit {
-
-  constructor(private readonly productsService: ProductsService, private router: Router, private snackBar: MatSnackBar) { }
+  categories: Category[] = [];
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly categoriesService: CategoriesService,
+    private router: Router,
+    private snackBar: MatSnackBar,
+  ) { }
 
   ngOnInit(): void {
+    this.categoriesService.getAllCategories().subscribe((categories) => {
+      this.categories = categories;
+    });
   }
 
   createProduct(product: FormData): void {
