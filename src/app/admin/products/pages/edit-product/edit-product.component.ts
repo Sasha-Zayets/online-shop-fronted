@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ProductsService } from '../../../../core/services/products.service';
 import { Product } from '../../../../core/models/product';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Category } from '../../../../core/models/category';
+import {CategoriesService} from '../../../../core/services/categories.service';
 
 @Component({
   selector: 'app-edit-product',
@@ -12,9 +14,11 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class EditProductComponent implements OnInit {
   product: Product | null = null;
   idProduct = '';
+  categories: Category[] = [];
   constructor(
     private readonly routerService: ActivatedRoute,
     private readonly productService: ProductsService,
+    private readonly categoriesService: CategoriesService,
     private snackBar: MatSnackBar,
   ) { }
 
@@ -24,6 +28,9 @@ export class EditProductComponent implements OnInit {
 
       this.idProduct = productId;
       this.getProductData(productId);
+    });
+    this.categoriesService.getAllCategories().subscribe((categories) => {
+      this.categories = categories;
     });
   }
 

@@ -1,4 +1,5 @@
-import { ID, CATEGORY_ID } from '../types/types';
+import { ID } from '../types/types';
+import { Category } from './category';
 
 export interface Product {
   id: ID;
@@ -7,5 +8,5 @@ export interface Product {
   image: string | null;
   price: number;
   available: boolean;
-  categories: CATEGORY_ID[];
+  categories: Category[];
 }

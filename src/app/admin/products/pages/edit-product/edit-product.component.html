@@ -1,6 +1,7 @@
 <h2>Edit product:</h2>
 <app-product-form
   [initialValues]="product"
+  [categories]="categories"
   (onSubmitForm)="updateProduct($event)"
   (onRemoveFile)="deleteImageForProduct()"
   (onUpdateFile)="updateImageForProduct($event)"

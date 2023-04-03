@@ -50,6 +50,10 @@ export class ProductFormComponent implements OnInit, OnChanges {
   setInitialValuesForForm(values: Product): void {
     this.isEditForm = true;
     this.productForm.patchValue(values);
+    if (Array.isArray(values.categories)) {
+      const ids = values.categories.map((el) => el.id);
+      this.productForm.controls.categories.setValue(ids);
+    }
   }
 
   loadImage(file: File | null): void {
@@ -65,6 +69,11 @@ export class ProductFormComponent implements OnInit, OnChanges {
   }
 
   onSubmitProductForm(values: any): void {
+    if (this.isEditForm) {
+      this.onSubmitForm.emit(values);
+      return;
+    }
+
     const formData = new FormData();
     Object.keys(values).forEach(key => {
       if (Array.isArray(values[key])) {
